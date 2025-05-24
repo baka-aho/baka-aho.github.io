@@ -1,1 +1,468 @@
-"Hello World" 
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1" name="viewport" />
+    <title>Profile Page</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
+      rel="stylesheet"
+    />
+    <style>
+      @import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap");
+      body {
+        font-family: "Inter", sans-serif;
+      }
+      #discord_status.online {
+        background: #4caf50;
+      }
+      #discord_status.dnd {
+        background: #f44336;
+      }
+      #discord_status.idle {
+        background: #ff9800;
+      }
+      #discord_status.offline {
+        background: #9e9e9e;
+      }
+      /* Hover styles for inactive tabs without underline */
+      button.tab-inactive:hover:not(:disabled) {
+        color: white;
+        border-bottom-width: 0 !important;
+      }
+      button:disabled {
+        cursor: not-allowed;
+        opacity: 0.5;
+      }
+    </style>
+  </head>
+  <body class="bg-[#121212] flex justify-center items-center min-h-screen p-4">
+    <div
+      id="main-container"
+      class="w-full max-w-xl rounded-xl overflow-hidden bg-[rgba(255,255,255,0.05)] backdrop-blur-[20px] relative"
+    >
+      <!-- Banner -->
+      <div class="w-full h-40 rounded-t-xl relative overflow-hidden">
+        <img
+          src="https://i.pinimg.com/originals/e7/12/7f/e7127f134bc64a89d6772c1226789c29.gif"
+          alt="Animated Banner"
+          class="w-full h-full object-cover"
+        />
+      </div>
+      <!-- Top right ellipsis button -->
+      <button
+        aria-label="More options"
+        class="absolute top-4 right-4 bg-[#2c2c2c] w-8 h-8 rounded-full flex justify-center items-center text-[#b3b3b3] hover:text-white text-[14px]"
+      >
+        <i class="fas fa-ellipsis-h"></i>
+      </button>
+      <div class="px-6 pb-6 pt-0 relative -mt-16">
+        <!-- Profile image and online dot with z-index -->
+        <div class="relative w-32 h-32 overflow-hidden z-30">
+          <div
+            class="relative w-32 h-32 rounded-full border-2 border-[#121212] overflow-hidden z-20"
+          >
+            <img
+              alt="Anime character in white coat"
+              class="w-full h-full object-cover"
+              height="128"
+              id="avatar"
+              src="https://via.placeholder.com/100"
+              width="128"
+            />
+          </div>
+          <span
+            id="discord_status"
+            class="absolute bottom-2 right-2 w-6 h-6 rounded-full border-2 border-[#121212] z-30"
+          ></span>
+        </div>
+        <!-- Name and username with badges and Visit Profile button on top right -->
+        <div class="mt-4 flex flex-wrap items-center gap-2 relative">
+          <h1
+            class="text-white text-2xl font-semibold leading-tight"
+            id="global_name"
+          >
+            Loading...
+          </h1>
+          <span class="text-[#b3b3b3] text-sm font-medium" id="username">
+            Loading...
+          </span>
+          <span class="text-white text-lg"> · </span>
+          <div class="flex items-center gap-1">
+            <img
+              alt="Verified badge icon"
+              class="w-5 h-5"
+              height="20"
+              src="https://storage.googleapis.com/a1aa/image/f2107b7f-e24f-4b53-6e27-16d4ef0b40f4.jpg"
+              width="20"
+            />
+            <img
+              alt="Guild badge icon"
+              class="w-5 h-5"
+              height="20"
+              src="https://storage.googleapis.com/a1aa/image/cf2352ce-94ee-4b8d-7d24-614a23201539.jpg"
+              width="20"
+            />
+          </div>
+          <button
+            class="absolute top-0 right-0 bg-[#121212] rounded-md px-4 py-1.5 flex items-center gap-2 cursor-pointer hover:bg-[#22272e] select-none z-10 text-white text-sm font-semibold"
+          >
+            <i class="fas fa-external-link-alt text-xs"></i>
+            Visit Profile
+          </button>
+        </div>
+        <!-- Tabs -->
+        <nav
+          class="mt-4 flex border-b border-[#3a3a3a] text-[#b3b3b3] text-sm font-semibold select-none"
+        >
+          <button
+            id="tab-about"
+            class="pb-2 border-b-2 border-white text-white"
+            type="button"
+          >
+            About Me
+          </button>
+          <button
+            id="tab-activity"
+            class="ml-6 pb-2 tab-inactive"
+            type="button"
+          >
+            Activity
+          </button>
+        </nav>
+        <!-- About Me content container -->
+        <div
+          id="about-content"
+          class="mt-3 max-w-xl text-[#b3b3b3] text-sm space-y-6"
+        >
+          <p>おい,너,왜我的プロフィールページにいるの？</p>
+          <div>
+            <p class="text-xs font-semibold uppercase mb-1">Member Since</p>
+            <p class="font-medium" id="member-since">Nov 6, 2018</p>
+          </div>
+          <div>
+            <p class="text-xs font-semibold uppercase mb-2">Connections</p>
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+              <!-- Epic Games -->
+              <a
+                class="flex items-center border border-[#3a3a3a] justify-between rounded-md px-4 py-2 text-[#b3b3b3] text-sm font-medium hover:bg-[#2c2f36]"
+                href="#"
+              >
+                <div class="flex items-center gap-2">
+                  <img
+                    alt="Epic Games logo"
+                    class="w-5 h-5"
+                    height="20"
+                    src="./epic.png"
+                    width="20"
+                  />
+                  <span> aho.baka </span>
+                  <i class="fas fa-check-circle text-[#4caf50] text-xs"></i>
+                </div>
+                <i class="fas fa-external-link-alt text-xs"></i>
+              </a>
+              <!-- GitHub -->
+              <a
+                class="flex items-center border border-[#3a3a3a] justify-between rounded-md px-4 py-2 text-[#b3b3b3] text-sm font-medium hover:bg-[#2c2f36]"
+                href="#"
+              >
+                <div class="flex items-center gap-2">
+                  <img
+                    alt="GitHub logo"
+                    class="w-5 h-5"
+                    height="20"
+                    src="./github.png"
+                    width="20"
+                  />
+                  <span> baka-aho </span>
+                  <i class="fas fa-check-circle text-[#4caf50] text-xs"></i>
+                </div>
+                <i class="fas fa-external-link-alt text-xs"></i>
+              </a>
+              <!-- Spotify -->
+              <a
+                class="flex items-center border border-[#3a3a3a] justify-between rounded-md px-4 py-2 text-[#b3b3b3] text-sm font-medium hover:bg-[#2c2f36]"
+                href="#"
+              >
+                <div class="flex items-center gap-2">
+                  <img
+                    alt="Spotify logo"
+                    class="w-5 h-5"
+                    height="20"
+                    src="./spotify.png"
+                    width="20"
+                  />
+                  <span> aho_baka </span>
+                  <i class="fas fa-check-circle text-[#4caf50] text-xs"></i>
+                </div>
+                <i class="fas fa-external-link-alt text-xs"></i>
+              </a>
+            </div>
+          </div>
+          <div>
+            <label
+              class="text-[#7a7a7a] text-xs font-semibold mb-1 block"
+              for="note"
+            >
+              Note
+              <span class="font-normal"> (only visible to you) </span>
+            </label>
+            <textarea
+              class="w-full bg-transparent border border-[#3a3a3a] rounded-md p-2 text-[#b3b3b3] text-sm resize-none focus:outline-none focus:ring-1 focus:ring-[#4caf50]"
+              id="note"
+              placeholder="Write something here. go on!"
+              rows="2"
+            ></textarea>
+          </div>
+        </div>
+        <!-- Activity Tab Content -->
+        <div
+          id="activity-content"
+          class="mt-3 max-w-xl text-[#b3b3b3] text-sm hidden"
+        >
+          <div
+            class="rounded-md p-4 border border-[#3a3a3a] flex flex-col gap-3 min-h-[80px]"
+          >
+            <h3 class="text-xs font-semibold text-[#7a7a7a]">
+              Listening to Spotify
+            </h3>
+            <div
+              class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2"
+            >
+              <div class="flex items-center gap-3 flex-1 min-w-0">
+                <img
+                  id="spotify-icon"
+                  alt="Album art"
+                  src=""
+                  class="w-12 h-12 flex-shrink-0 rounded"
+                />
+                <div class="truncate">
+                  <p class="text-white truncate" id="spotify-song"></p>
+                  <p class="text-[#7a7a7a] truncate" id="spotify-artist"></p>
+                </div>
+              </div>
+              <a
+                href="#"
+                class="text-[#1db954] whitespace-nowrap"
+                id="spotify-link"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                Play on Spotify
+              </a>
+            </div>
+            <div
+              class="flex justify-between items-center w-full text-xs text-[#7a7a7a] font-mono select-none"
+            >
+              <span id="spotify-current-time">0:00</span>
+              <div
+                class="flex-1 mx-2 h-1 bg-[#3a3a3a] rounded overflow-hidden relative"
+              >
+                <div
+                  id="spotify-progress"
+                  class="h-1 bg-[#1db954] rounded absolute top-0 left-0"
+                  style="width: 0%"
+                ></div>
+              </div>
+              <span id="spotify-total-time">0:00</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <script>
+      document.addEventListener("DOMContentLoaded", () => {
+        const userId = "1099693338883530822";
+        const apiUrl = `https://api.lanyard.rest/v1/users/${userId}`;
+
+        const tabAbout = document.getElementById("tab-about");
+        const tabActivity = document.getElementById("tab-activity");
+        const aboutContent = document.getElementById("about-content");
+        const activityContent = document.getElementById("activity-content");
+        const mainContainer = document.getElementById("main-container");
+        const spotifyIcon = document.getElementById("spotify-icon");
+
+        // Set min-height to prevent shrinking
+        const setMinHeight = () => {
+          aboutContent.classList.remove("hidden");
+          activityContent.classList.add("hidden");
+          const aboutHeight = mainContainer.offsetHeight;
+          mainContainer.style.minHeight = `${aboutHeight}px`;
+        };
+
+        setMinHeight();
+
+        // Tab switching function
+        function switchTab(tab) {
+          if (tab === "about") {
+            tabAbout.classList.add("border-b-2", "border-white", "text-white");
+            tabActivity.classList.remove(
+              "border-b-2",
+              "border-white",
+              "text-white"
+            );
+            tabActivity.classList.add("tab-inactive");
+            tabAbout.classList.remove("tab-inactive");
+            aboutContent.classList.remove("hidden");
+            activityContent.classList.add("hidden");
+          } else if (tab === "activity") {
+            tabActivity.classList.add(
+              "border-b-2",
+              "border-white",
+              "text-white"
+            );
+            tabAbout.classList.remove(
+              "border-b-2",
+              "border-white",
+              "text-white"
+            );
+            tabAbout.classList.add("tab-inactive");
+            tabActivity.classList.remove("tab-inactive");
+            aboutContent.classList.add("hidden");
+            activityContent.classList.remove("hidden");
+          }
+        }
+
+        tabAbout.addEventListener("mouseenter", () => {
+          if (!tabAbout.classList.contains("border-b-2")) {
+            tabAbout.classList.add("hover:text-white");
+          }
+        });
+        tabAbout.addEventListener("mouseleave", () => {
+          if (!tabAbout.classList.contains("border-b-2")) {
+            tabAbout.classList.remove("hover:text-white");
+          }
+        });
+
+        tabActivity.addEventListener("mouseenter", () => {
+          if (
+            !tabActivity.classList.contains("border-b-2") &&
+            !tabActivity.disabled
+          ) {
+            tabActivity.classList.add("hover:text-white");
+          }
+        });
+        tabActivity.addEventListener("mouseleave", () => {
+          if (
+            !tabActivity.classList.contains("border-b-2") &&
+            !tabActivity.disabled
+          ) {
+            tabActivity.classList.remove("hover:text-white");
+          }
+        });
+
+        tabAbout.addEventListener("click", () => switchTab("about"));
+        tabActivity.addEventListener("click", () => {
+          if (!tabActivity.disabled) {
+            switchTab("activity");
+          }
+        });
+
+        function formatTime(ms) {
+          const totalSeconds = Math.floor(ms / 1000);
+          const minutes = Math.floor(totalSeconds / 60);
+          const seconds = totalSeconds % 60;
+          return `${minutes}:${seconds.toString().padStart(2, "0")}`;
+        }
+
+        function updateProgressBar(start, end) {
+          const progressBar = document.getElementById("spotify-progress");
+          const currentTimeSpan = document.getElementById(
+            "spotify-current-time"
+          );
+          const totalTimeSpan = document.getElementById("spotify-total-time");
+          const now = Date.now();
+          const startTime = new Date(start).getTime();
+          const endTime = new Date(end).getTime();
+          const duration = endTime - startTime;
+
+          if (now < startTime) {
+            progressBar.style.width = "0%";
+            currentTimeSpan.textContent = "0:00";
+          } else if (now > endTime) {
+            progressBar.style.width = "100%";
+            currentTimeSpan.textContent = formatTime(duration);
+          } else {
+            const elapsed = now - startTime;
+            const progress = (elapsed / duration) * 100;
+            progressBar.style.width = `${progress}%`;
+            currentTimeSpan.textContent = formatTime(elapsed);
+          }
+          totalTimeSpan.textContent = formatTime(duration);
+        }
+
+        fetch(apiUrl)
+          .then((response) => response.json())
+          .then((data) => {
+            if (data.success) {
+              const user = data.data.discord_user;
+              const avatar = user.avatar
+                ? `https://cdn.discordapp.com/avatars/${userId}/${user.avatar}.webp?size=128`
+                : "https://via.placeholder.com/100";
+              document.getElementById("avatar").src = avatar;
+              document.getElementById("global_name").textContent =
+                user.global_name || user.username;
+              document.getElementById("username").textContent = user.username;
+              const statusDot = document.getElementById("discord_status");
+              statusDot.className = `absolute bottom-2 right-2 w-6 h-6 rounded-full border-2 border-[#121212] z-30 ${
+                data.data.discord_status || "offline"
+              }`;
+
+              // Member Since date (if available)
+              if (user.created_at) {
+                const createdDate = new Date(user.created_at);
+                document.getElementById("member-since").textContent =
+                  createdDate.toLocaleDateString(undefined, {
+                    year: "numeric",
+                    month: "short",
+                    day: "numeric",
+                  });
+              }
+
+              if (data.data.listening_to_spotify) {
+                const spotify = data.data.spotify;
+                document.getElementById("spotify-song").textContent =
+                  spotify.song;
+                document.getElementById("spotify-artist").textContent =
+                  spotify.artist;
+                document.getElementById(
+                  "spotify-link"
+                ).href = `https://open.spotify.com/track/${spotify.track_id}`;
+                spotifyIcon.src =
+                  spotify.album_art_url ||
+                  "https://cdn-icons-png.flaticon.com/512/174/174872.png";
+
+                // Update progress bar initially
+                updateProgressBar(
+                  spotify.timestamps.start,
+                  spotify.timestamps.end
+                );
+
+                // Update progress bar every second
+                setInterval(() => {
+                  updateProgressBar(
+                    spotify.timestamps.start,
+                    spotify.timestamps.end
+                  );
+                }, 1000);
+
+                // Show activity tab content only if activity tab is active
+                if (tabActivity.classList.contains("border-b-2")) {
+                  activityContent.classList.remove("hidden");
+                  aboutContent.classList.add("hidden");
+                }
+              } else {
+                // If not listening to Spotify, disable activity tab and show about by default
+                tabActivity.classList.add("opacity-50", "cursor-not-allowed");
+                tabActivity.disabled = true;
+                switchTab("about");
+              }
+            } else {
+              console.error("Error fetching user data:", data.error);
+            }
+          })
+          .catch((error) => console.error("Fetch error:", error));
+      });
+    </script>
+  </body>
+</html>
